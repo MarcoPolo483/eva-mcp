@@ -34,12 +34,12 @@ describe("MCPServer core", () => {
     const msg1 = frame({ jsonrpc: "2.0", id: 1, method: "initialize", params: {} });
     const msg2 = frame({ jsonrpc: "2.0", id: 2, method: "shutdown", params: {} });
     const combined = Buffer.concat([msg1, msg2]);
-    
+
     // Use Readable.from to create a proper readable stream from buffer
     const input = Readable.from([combined]);
     const output = new PassThrough();
     const srv = new MCPServer({ inStream: input, outStream: output });
-    
+
     await srv.run();
 
     const first = nextMessage(output);
@@ -53,13 +53,13 @@ describe("MCPServer core", () => {
     const msg1 = frame({ jsonrpc: "2.0", id: 1, method: "tools/list" });
     const msg2 = frame({ jsonrpc: "2.0", id: 2, method: "tools/call", params: { name: "echo", arguments: { text: "hi" } } });
     const combined = Buffer.concat([msg1, msg2]);
-    
+
     const input = Readable.from([combined]);
     const output = new PassThrough();
     const srv = new MCPServer({ inStream: input, outStream: output });
-    
+
     await srv.run();
-    
+
     const list = nextMessage(output);
     expect(list.result.tools.some((t: any) => t.name === "echo")).toBe(true);
     const call = nextMessage(output);
@@ -70,9 +70,9 @@ describe("MCPServer core", () => {
     const input = Readable.from([frame({ jsonrpc: "2.0", id: 3, method: "unknown/method" })]);
     const output = new PassThrough();
     const srv = new MCPServer({ inStream: input, outStream: output });
-    
+
     await srv.run();
-    
+
     const msg = nextMessage(output);
     expect(msg.error.code).toBe(-32601);
   });
