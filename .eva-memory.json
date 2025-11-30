@@ -1,0 +1,51 @@
+{
+  "$schema": "https://marcopolo483.github.io/eva-suite/schemas/eva-memory-v1.json",
+  "version": "1.0.0",
+  "repo": {
+    "name": "REPO_NAME_PLACEHOLDER",
+    "pod": "POD_PLACEHOLDER",
+    "purpose": "DESCRIPTION_PLACEHOLDER",
+    "status": "active",
+    "owner": "OWNER_PLACEHOLDER",
+    "dependencies": [],
+    "lastUpdated": "2025-11-29T00:00:00Z"
+  },
+  "context": {
+    "summary": "SUMMARY_PLACEHOLDER",
+    "keyFiles": [],
+    "currentPhase": "Sprint 4 - Stabilization & Demo Prep",
+    "openIssues": 0,
+    "blockers": []
+  },
+  "quality": {
+    "testCoverage": 0,
+    "lintWarnings": 0,
+    "typeScriptStrict": false,
+    "wcagCompliance": "N/A",
+    "bilingualStatus": "N/A"
+  },
+  "memory": {
+    "lessons": [],
+    "tools": [],
+    "patterns": []
+  },
+  "reports": {
+    "lastHousekeeping": null,
+    "lastAudit": null,
+    "lastTestRun": null,
+    "cachePath": ".eva-cache/"
+  },
+  "bootstrap": {
+    "readOnOpen": true,
+    "autoUpdate": "nightly",
+    "backupEnabled": true,
+    "backupPath": ".eva-cache/backups/"
+  },
+  "_metadata": {
+    "createdBy": "TASK-002 Bootstrap Memory Template",
+    "createdAt": "2025-11-29T00:00:00Z",
+    "templateVersion": "1.0.0",
+    "lastModifiedBy": null,
+    "lastModifiedAt": null
+  }
+}
