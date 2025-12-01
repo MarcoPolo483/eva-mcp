@@ -1,0 +1,40 @@
+# eva-mcp - Pod Configuration
+# Part of EVA Agile Crew: Foundation and Platform Pod
+
+pod: POD-F
+service: eva-mcp
+pod_name: Foundation and Platform Pod
+
+description: |
+  Repository managed by POD-F (Foundation and Platform Pod)
+  
+primary_agents:
+  - P01  # DevTools Pattern
+  - P02  # DevTools Pattern
+  - P04  # DevTools Pattern
+  - P05  # DevTools Pattern
+  - P06  # DevTools Pattern
+  - P07  # DevTools Pattern
+  - P08  # DevTools Pattern
+  - P11  # DevTools Pattern
+  - P15  # DevTools Pattern
+
+# Agent Pattern Reference:
+# P01 - PAT  - DevTools Patterns & Toolbox
+# P02 - REQ  - Requirements Agent
+# P03 - SCR  - Scrum Master Agent
+# P04 - LIB  - Repo Librarian Agent
+# P05 - SCA  - Scaffolder Agent
+# P06 - REV  - Review Agent
+# P07 - TST  - Testing & Failure Explainer
+# P08 - CICD - CI/CD Guardian
+# P09 - RUN  - Runtime & Ops Agent
+# P10 - MET  - Metering & Billing Agent
+# P11 - SEC  - Security & Compliance Agent
+# P12 - UXA  - UX & Accessibility Agent
+# P13 - ONB  - Onboarding Agent
+# P14 - LVO  - LiveOps Agent
+# P15 - DVM  - Dev Master Orchestrator
+
+version: 1.0.0
+created: 2025-11-29
