@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "owner": "P04-LIB + P15-DVM",
+  "pod": "POD-F",
+  "rules": {
+    "automation_health": {
+      "check_workflows": true,
+      "check_dirty_tree": true,
+      "auto_remediate": false
+    },
+    "directory_map": {
+      "auto_refresh": true,
+      "max_age_hours": 24,
+      "depth": 3
+    },
+    "quality_gates": {
+      "pre_pr": [
+        "test",
+        "coverage"
+      ],
+      "pre_push": [
+        "test"
+      ],
+      "pre_commit": [
+        "lint",
+        "format-check"
+      ]
+    }
+  },
+  "last_updated": "2025-12-07T17:49:34Z",
+  "purpose": "Model Context Protocol server integration",
+  "ignored_patterns": [
+    "node_modules/",
+    ".git/",
+    "dist/",
+    "build/",
+    ".next/",
+    ".eva-cache/"
+  ],
+  "repo": "eva-mcp"
+}
