@@ -2,20 +2,20 @@
   "$schema": "https://marcopolo483.github.io/eva-suite/schemas/eva-memory-v1.json",
   "version": "1.0.0",
   "repo": {
-    "name": "REPO_NAME_PLACEHOLDER",
-    "pod": "POD_PLACEHOLDER",
-    "purpose": "DESCRIPTION_PLACEHOLDER",
+    "name": "eva-mcp",
+    "pod": "POD-F",
+    "purpose": "Model Context Protocol (MCP) server for EVA Suite. Exposes tools to AI agents via HTTP/SSE: Cosmos DB operations, Azure Resource Manager, Git operations, documentation search, localization, telemetry. OAuth 2.1 authentication with Azure AD B2C. Tool registry with dynamic loading. RBAC per tool. Distributed tracing to Application Insights. Reference: OpenWebUI MCP client (utils/mcp/client.py), MCP Python SDK (mcp package), Anthropic MCP specification.",
     "status": "active",
-    "owner": "OWNER_PLACEHOLDER",
-    "dependencies": [],
-    "lastUpdated": "2025-11-29T00:00:00Z"
+    "owner": "P04-LIB + P15-DVM",
+    "dependencies": ["eva-orchestrator (specification)", "mcp (Python SDK)", "FastAPI", "Azure AD B2C", "Azure Key Vault", "Application Insights"],
+    "lastUpdated": "2025-12-07T17:45:00Z"
   },
   "context": {
-    "summary": "SUMMARY_PLACEHOLDER",
-    "keyFiles": [],
-    "currentPhase": "Sprint 4 - Stabilization & Demo Prep",
+    "summary": "CRITICAL: BEFORE ANY WORK, read complete specification: docs/SPECIFICATION.md (14000+ lines). Contains ALL MCP server requirements: tool discovery (< 100ms), tool execution (99%+ success), OAuth 2.1 authentication (dynamic client registration, token refresh), tool registry (dynamic loading from src/eva_mcp/tools/), base tool interface (BaseTool ABC with input/output schemas), RBAC enforcement (user roles per tool), resource management (read/write files/database), tracing (Application Insights for every tool execution), 12 quality gates (tool discovery latency, execution success rate, concurrent clients, token refresh, resource operations, schema validation, RBAC, test coverage, documentation, secrets management, tracing, error recovery), 4-phase implementation plan (6 weeks: MCP Foundation → OAuth Integration → Tool Library → Production Hardening). Reference implementations: OpenWebUI MCP client (utils/mcp/client.py - streamablehttp_client, ClientSession, list_tool_specs, call_tool), OpenWebUI middleware integration (tool server connections, MCP clients dict, tool execution with error handling). Tool catalog: Cosmos DB (query/insert/update/delete), Azure RM (list/deploy/delete resources), Git (clone/commit/push), Documentation (search/summarize), Localization (translate EN ↔ FR), Telemetry (send metrics). Marco is NOT available for questions - specification is complete. Any MCP server work MUST follow specification exactly. Evidence required: curl test results showing tool discovery + execution, pytest coverage report (90%+), Application Insights traces, OAuth flow working.",
+    "keyFiles": ["docs/SPECIFICATION.md", "src/eva_mcp/server.py", "src/eva_mcp/tools/registry.py", "src/eva_mcp/tools/base.py", "src/eva_mcp/auth/oauth.py", "Dockerfile", "tests/"],
+    "currentPhase": "BLOCKED: Must read docs/SPECIFICATION.md FIRST before any MCP server implementation work",
     "openIssues": 0,
-    "blockers": []
+    "blockers": ["CRITICAL: Cannot start MCP server implementation without reading complete specification (docs/SPECIFICATION.md). All tool requirements, OAuth 2.1 flow, tool registry logic, RBAC patterns, tracing integration, and 12 quality gates are documented. Read specification before ANY implementation work."]
   },
   "quality": {
     "testCoverage": 0,
