@@ -1,0 +1,11 @@
+# Exclude all evidence JSON files (generated per-build, not committed)
+evidence/**/*.json
+
+# Keep folder structure
+!evidence/**/.gitkeep
+
+# Exclude production-status.json on feature branches (CI-owned)
+production-status.json
+
+# Keep exceptions file (manually curated)
+!exceptions.yml
