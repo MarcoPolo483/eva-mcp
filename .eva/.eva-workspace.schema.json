@@ -1,0 +1,98 @@
+{
+  "description": "Required root-level folders and files for EVA Suite repositories (generated from .eva-memory.json)",
+  "$id": "https://marcopolo483.github.io/eva-suite/schemas/eva-workspace-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "requiredRootFolders": {
+      "items": {
+        "type": "string",
+        "enum": [
+          "audits",
+          "risk",
+          "compliance",
+          "decisions",
+          "requirements",
+          "roadmap",
+          "use-cases",
+          "personas",
+          "architecture",
+          "design",
+          "diagrams",
+          "src",
+          "config",
+          "schemas",
+          "automation",
+          "agents",
+          "orchestration",
+          "intelligence",
+          "telemetry",
+          "dashboards",
+          "tests",
+          "test-data",
+          "coverage",
+          "security",
+          "sanitization",
+          "secrets",
+          "docs",
+          "guides",
+          "examples",
+          "backups",
+          "memory",
+          "history"
+        ]
+      },
+      "type": "array",
+      "minItems": 32,
+      "description": "All 32 folders must exist at repository root",
+      "uniqueItems": true
+    },
+    "repo": {
+      "type": "object",
+      "properties": {
+        "pod": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "pod",
+        "purpose"
+      ]
+    },
+    "requiredRootFiles": {
+      "items": {
+        "type": "string",
+        "enum": [
+          "README.md",
+          "LICENSE",
+          ".gitignore",
+          ".eva-manifest.json",
+          ".eva-memory.json"
+        ]
+      },
+      "type": "array",
+      "minItems": 5,
+      "description": "All 5 files must exist at repository root",
+      "uniqueItems": true
+    },
+    "version": {
+      "description": "Workspace schema version",
+      "const": "v1"
+    }
+  },
+  "title": "EVA Workspace Structure",
+  "required": [
+    "version",
+    "repo",
+    "requiredRootFolders",
+    "requiredRootFiles"
+  ]
+}
