@@ -373,3 +373,30 @@ jobs:
             git commit -m "chore: Update production status [skip ci]"
             git push
           fi
+
+      # Update quality metrics in .eva-memory.json (Deliverable 1)
+      - name: Update quality metrics
+        if: github.ref == 'refs/heads/main'
+        run: |
+          if [ -f ".eva-memory.json" ] && [ -f "tools/update-quality-metrics.ps1" ]; then
+            pwsh ./tools/update-quality-metrics.ps1
+            git add .eva-memory.json
+            if git diff --staged --quiet; then
+              echo "No quality metrics updates"
+            else
+              git commit -m "chore: Update quality metrics in .eva-memory.json [skip ci]"
+              git push
+            fi
+          else
+            echo "Skipping quality metrics update (no .eva-memory.json or update script)"
+          fi
+
+      # Lint .eva-memory.json for policy compliance (Deliverable 4)
+      - name: Lint memory file
+        run: |
+          if [ -f ".eva-memory.json" ] && [ -f "tools/lint-eva-memory.ps1" ]; then
+            echo "Running memory hygiene linter..."
+            pwsh ./tools/lint-eva-memory.ps1
+          else
+            echo "Skipping memory lint (no .eva-memory.json or lint script)"
+          fi
