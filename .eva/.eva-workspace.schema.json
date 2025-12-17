@@ -5,34 +5,11 @@
     "requiredRootFolders",
     "requiredRootFiles"
   ],
-  "title": "EVA Workspace Structure",
-  "type": "object",
-  "description": "Required root-level folders and files for EVA Suite repositories (generated from .eva-memory.json)",
   "properties": {
-    "repo": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "pod": {
-          "type": "string"
-        },
-        "purpose": {
-          "type": "string"
-        }
-      },
-      "type": "object",
-      "required": [
-        "name",
-        "pod",
-        "purpose"
-      ]
-    },
     "requiredRootFiles": {
-      "uniqueItems": true,
-      "type": "array",
       "description": "All 5 files must exist at repository root",
-      "minItems": 5,
+      "type": "array",
+      "uniqueItems": true,
       "items": {
         "type": "string",
         "enum": [
@@ -42,17 +19,36 @@
           ".eva-manifest.json",
           ".eva-memory.json"
         ]
-      }
+      },
+      "minItems": 5
+    },
+    "repo": {
+      "type": "object",
+      "properties": {
+        "pod": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "pod",
+        "purpose"
+      ]
     },
     "version": {
       "description": "Workspace schema version",
       "const": "v1"
     },
     "requiredRootFolders": {
-      "uniqueItems": true,
-      "type": "array",
       "description": "All 32 folders must exist at repository root",
-      "minItems": 32,
+      "type": "array",
+      "uniqueItems": true,
       "items": {
         "type": "string",
         "enum": [
@@ -89,10 +85,14 @@
           "memory",
           "history"
         ]
-      }
+      },
+      "minItems": 32
     }
   },
+  "type": "object",
+  "title": "EVA Workspace Structure",
   "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://marcopolo483.github.io/eva-suite/schemas/eva-workspace-v1.json"
+  "$id": "https://marcopolo483.github.io/eva-suite/schemas/eva-workspace-v1.json",
+  "description": "Required root-level folders and files for EVA Suite repositories (generated from .eva-memory.json)",
+  "$schema": "http://json-schema.org/draft-07/schema#"
 }
