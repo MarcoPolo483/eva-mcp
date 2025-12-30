@@ -1,6 +1,6 @@
 {
-  "$schema": "https://marcopolo483.github.io/eva-suite/schemas/eva-memory-v1.json",
-  "version": "1.0.0",
+  "$schema": ".eva/.eva-memory.schema.json",
+  "version": "2.0.0",
   "repo": {
     "name": "eva-mcp",
     "pod": "POD-F",
@@ -9,6 +9,22 @@
     "owner": "P04-LIB + P15-DVM",
     "dependencies": ["eva-orchestrator (specification)", "mcp (Python SDK)", "FastAPI", "Azure AD B2C", "Azure Key Vault", "Application Insights"],
     "lastUpdated": "2025-12-07T17:45:00Z"
+  },
+  "scope": {
+    "memoryScope": "repo",
+    "repoTreePath": ".eva-cache/repo-tree.txt",
+    "suiteTreePath": "../eva-lwo/eva-suite-full-tree.txt"
+  },
+  "workspace": {
+    "version": "1.0.0",
+    "rules": {}
+  },
+  "memoryPolicy": {
+    "maxLessonSummaryChars": 400,
+    "requireEvidencePathsForClaims": true,
+    "lessonStorage": "centralized-catalog",
+    "catalogPath": "memory/catalog.json",
+    "lessonPath": "memory/lessons/"
   },
   "context": {
     "summary": "✅ PHASE 2 COMPLETE (2025-12-07T21:00:00Z / Sat Dec 7, 2025 9:00 PM EST). OAuth 2.1 Integration implemented with Azure AD B2C. OAuthProvider: metadata discovery, token validation (5-min cache), token refresh (<1s), client registration, Key Vault secret storage. RBAC module: Cosmos DB user role retrieval (10-min cache), 100% test coverage. Server integration: real Bearer token validation, 401 for invalid tokens. Tests: 52 passed, 71% coverage; RBAC: 100% coverage (14/14 tests). Quality gates: token validation ✅, refresh <1s ✅, RBAC 100% ✅, Cosmos DB integration ✅, Key Vault ✅. Evidence: PHASE2-EVIDENCE.md. Known: 8 OAuth tests have aiohttp mocking issues (code correct). Ready for Phase 3: Tool Library Expansion (12+ tools, Application Insights, Azure deployment). Specification: docs/SPECIFICATION.md. Marco NOT available - all requirements documented.",
@@ -24,38 +40,21 @@
     "wcagCompliance": "N/A",
     "bilingualStatus": "N/A"
   },
-  "memory": {
+  "knowledgeRegistry": {
+    "version": "3.0.0",
+    "model": "centralized-registry",
+    "catalogPath": "memory/catalog.json",
+    "toolsRegistry": "tools/registry.json",
+    "patternsDir": "docs/eva-patterns/"
+  },
+  "applied": {
     "lessons": [
-      {
-        "date": "2025-12-07",
-        "lesson": "Dynamic tool loading works perfectly - new tools auto-discovered by registry when added to tools/ directory",
-        "impact": "Scalable architecture - can easily add 15+ tools in Phase 3 without modifying registry code"
-      },
-      {
-        "date": "2025-12-07",
-        "lesson": "Pydantic schema validation eliminates manual argument checking - invalid inputs rejected before execution",
-        "impact": "99%+ execution success rate for valid inputs - all schema errors caught at validation layer"
-      },
-      {
-        "date": "2025-12-07",
-        "lesson": "FastAPI async lifespan manager ideal for tool initialization/cleanup - ensures resources properly managed",
-        "impact": "Tools initialize once at startup, cleanup on shutdown - no resource leaks"
-      },
-      {
-        "date": "2025-12-07",
-        "lesson": "Test strategy: Core logic tested without Azure credentials - integration tests deferred to Phase 2",
-        "impact": "74% coverage acceptable for Phase 1 - Azure SDK paths will be tested with real credentials later"
-      },
-      {
-        "date": "2025-12-07",
-        "lesson": "RBAC module achieved 100% test coverage by separating concerns and testing edge cases comprehensively",
-        "impact": "Security-critical code fully validated - fail-closed design prevents unauthorized access"
-      },
-      {
-        "date": "2025-12-07",
-        "lesson": "OAuth provider HTTP mocking is complex with aiohttp async context managers - consider aioresponses library",
-        "impact": "8 OAuth tests need better mocking setup, but code logic is correct per OAuth 2.1 spec"
-      }
+      "LESSON-100",
+      "LESSON-101",
+      "LESSON-102",
+      "LESSON-103",
+      "LESSON-104",
+      "LESSON-105"
     ],
     "tools": [
       {

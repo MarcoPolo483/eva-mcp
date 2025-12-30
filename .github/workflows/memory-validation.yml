@@ -1,0 +1,25 @@
+name: Memory Validation (centralized)
+
+on:
+  push:
+    paths:
+      - ".eva-memory.json"
+      - ".eva/.eva-memory.schema.json"
+      - ".github/workflows/memory-validation.yml"
+  pull_request:
+    paths:
+      - ".eva-memory.json"
+      - ".eva/.eva-memory.schema.json"
+
+jobs:
+  validate-memory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate .eva-memory.json against schema
+        run: npx --yes ajv-cli@5.0.0 validate -s .eva/.eva-memory.schema.json -d .eva-memory.json --strict=true --all-errors

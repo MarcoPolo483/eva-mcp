@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://marcopolo483.github.io/eva-suite/schemas/eva-memory-v2.schema.json",
+  "title": "EVA Memory File (v2)",
+  "description": "Validation schema for .eva-memory.json including centralized knowledgeRegistry and memoryPolicy constraints",
+  "type": "object",
+  "required": ["version", "repo", "scope", "context", "workspace", "memoryPolicy", "knowledgeRegistry"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "repo": {
+      "type": "object",
+      "required": ["name", "pod", "purpose", "status"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "pod": { "type": "string", "minLength": 1 },
+        "purpose": { "type": "string" },
+        "status": { "type": "string" },
+        "owner": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "scope": {
+      "type": "object",
+      "required": ["memoryScope", "repoTreePath", "suiteTreePath"],
+      "properties": {
+        "memoryScope": { "type": "string", "enum": ["repo", "workspace"] },
+        "repoTreePath": { "type": "string" },
+        "suiteTreePath": { "type": "string" },
+        "warning": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "context": {
+      "type": "object",
+      "required": ["summary", "keyFiles", "currentPhase", "blockers"],
+      "properties": {
+        "summary": { "type": "string" },
+        "keyFiles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "currentPhase": { "type": "string" },
+        "openIssues": { "type": "number" },
+        "blockers": { "type": "array" }
+      },
+      "additionalProperties": true
+    },
+    "workspace": {
+      "type": "object",
+      "required": ["version", "rules"],
+      "properties": {
+        "version": { "type": "string" },
+        "rules": { "type": "object" },
+        "requiredRootFiles": { "type": "array", "items": { "type": "string" } },
+        "requiredRootFolders": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "qualityV2": { "type": "object" },
+    "memoryPolicy": {
+      "type": "object",
+      "required": ["maxLessonSummaryChars", "requireEvidencePathsForClaims", "catalogPath", "lessonPath"],
+      "properties": {
+        "maxLessonSummaryChars": { "type": "integer", "minimum": 50, "maximum": 400 },
+        "whenToAddLesson": { "type": "string" },
+        "archiveLongNarrativesTo": { "type": "string" },
+        "requireEvidencePathsForClaims": { "type": "boolean", "const": true },
+        "lessonStorage": { "type": "string", "enum": ["centralized-catalog"] },
+        "catalogPath": { "type": "string", "pattern": "^memory/.*" },
+        "lessonPath": { "type": "string", "pattern": "^memory/lessons/" }
+      },
+      "additionalProperties": false
+    },
+    "knowledgeRegistry": {
+      "type": "object",
+      "required": ["version", "model", "catalogPath", "toolsRegistry", "patternsDir"],
+      "properties": {
+        "version": { "type": "string" },
+        "model": { "type": "string", "enum": ["centralized-registry"] },
+        "catalogPath": { "type": "string", "pattern": "^memory/catalog.json$" },
+        "toolsRegistry": { "type": "string", "pattern": "^tools/registry.json$" },
+        "patternsDir": { "type": "string", "pattern": "^docs/eva-patterns/" },
+        "rationale": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "applied": {
+      "type": "object",
+      "properties": {
+        "lessons": { "type": "array", "items": { "type": "string", "pattern": "^LESSON-\\d{3}$" } },
+        "tools": { "type": "array", "items": { "oneOf": [ { "type": "string" }, { "type": "object" } ] } },
+        "patterns": { "type": "array", "items": { "oneOf": [ { "type": "string" }, { "type": "object" } ] } }
+      },
+      "additionalProperties": true
+    },
+    "memory": { "type": "object" },
+    "reports": { "type": "object" },
+    "rolloutStatus": { "type": "object" },
+    "bootstrap": { "type": "object" }
+  },
+  "additionalProperties": true
+}
